@@ -164,16 +164,16 @@ class PropertyResponse(BaseModel):
     market: str
 
 # ===== ENDPOINTS =====
-@app.get("/health")
+@app.get("/health", tags=["System"], summary="Health Check")
 def health_check():
-    """Health check."""
+    """Returns the service status and LocationIQ configuration state."""
     return {
         "status": "ok", 
         "service": "India Property Valuation API",
         "locationiq_configured": LOCATIONIQ_API_KEY != "pk.YOUR_API_KEY_HERE"
     }
 
-@app.get("/geocode", response_model=GeocodeResponse)
+@app.get("/geocode", response_model=GeocodeResponse, tags=["Location"], summary="Search Locations")
 async def geocode_search(q: str = Query(..., min_length=3, description="Search query")):
     """
     Search for locations using LocationIQ autocomplete.
@@ -230,9 +230,12 @@ async def geocode_search(q: str = Query(..., min_length=3, description="Search q
         logger.error(f"Geocoding error: {e}")
         return GeocodeResponse(success=False, suggestions=[], message=str(e))
 
-@app.post("/predict", response_model=PropertyResponse)
+@app.post("/predict", response_model=PropertyResponse, tags=["Valuation"], summary="Predict Property Price")
 def predict(request: PropertyRequest):
-    """Predict property valuation."""
+    """
+    High-accuracy valuation prediction using Hybrid ML (XGBoost + Linear Regression).
+    Includes location features, historical trends, and property attributes.
+    """
     try:
         input_dict = request.model_dump()
         logger.info(f"Prediction: {request.property_type}.{request.property_subtype} @ {request.city}, pincode={request.pincode}")
