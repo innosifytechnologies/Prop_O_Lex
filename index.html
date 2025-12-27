@@ -780,6 +780,15 @@
 
     <script>
         // =====================================================
+        // ⚙️ CONFIGURATION (UPDATE THIS FOR DEPLOYMENT)
+        // =====================================================
+        // 1. Deploy backend to Railway.
+        // 2. Copy the "Public Domain" from Railway Settings.
+        // 3. Paste it below (e.g., "https://prop-o-lex.up.railway.app")
+        // 4. Then deploy this file to Vercel.
+        const BACKEND_URL = "https://web-production-665c.up.railway.app";
+
+        // =====================================================
         // State mapping for API
         // =====================================================
         const stateNormalization = {
@@ -926,7 +935,7 @@
         async function searchLocation(query) {
             try {
                 // Call backend proxy endpoint
-                const url = `http://localhost:8000/geocode?q=${encodeURIComponent(query)}`;
+                const url = `${BACKEND_URL}/geocode?q=${encodeURIComponent(query)}`;
                 const response = await fetch(url);
                 const data = await response.json();
 
@@ -1075,7 +1084,7 @@
             };
 
             try {
-                const response = await fetch('http://localhost:8000/predict', {
+                const response = await fetch(`${BACKEND_URL}/predict`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(payload)
