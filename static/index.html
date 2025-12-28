@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🏠 India Property Valuation | Prop-O-Lex</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #f59e0b;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --bg-dark: #0f172a;
+            --bg-card: #1e293b;
+            --bg-input: #334155;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --border: #475569;
+            --glow: 0 0 20px rgba(99, 102, 241, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, var(--bg-dark) 0%, #1a1a2e 100%);
+            color: var(--text-primary);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .bg-animation::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(ellipse at 20% 50%, rgba(99, 102, 241, 0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 50%, rgba(245, 158, 11, 0.05) 0%, transparent 50%);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translate(-10%, -10%) rotate(0deg);
+            }
+
+            50% {
+                transform: translate(10%, 10%) rotate(180deg);
+            }
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .logo-icon {
+            font-size: 2.5rem;
+        }
+
+        .tagline {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            font-weight: 400;
+        }
+
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        @media (max-width: 1024px) {
+            .main-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .card {
+            background: var(--bg-card);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            border: 1px solid var(--border);
+            box-shadow: var(--glow);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 40px rgba(99, 102, 241, 0.2);
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-group.full-width {
+            grid-column: span 2;
+        }
+
+        label {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        .required {
+            color: #ef4444;
+            font-weight: 600;
+        }
+
+        input,
+        select {
+            padding: 0.875rem 1rem;
+            background: var(--bg-input);
+            border: 1px solid var(--border);
+            border-radius: 0.75rem;
+            color: var(--text-primary);
+            font-size: 1rem;
+            font-family: inherit;
+            transition: all 0.2s ease;
+        }
+
+        input:focus,
+        select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+        }
+
+        input::placeholder {
+            color: var(--text-muted);
+        }
+
+        select {
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2394a3b8'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.75rem center;
+            background-size: 1.25rem;
+            padding-right: 2.5rem;
+        }
+
+        /* Location Search Styles */
+        .location-search-container {
+            position: relative;
+        }
+
+        .location-input {
+            padding-left: 2.75rem;
+        }
+
+        .location-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.25rem;
+            pointer-events: none;
+        }
+
+        .location-suggestions {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 0.75rem;
+            margin-top: 0.5rem;
+            max-height: 250px;
+            overflow-y: auto;
+            z-index: 100;
+            display: none;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .location-suggestions.active {
+            display: block;
+        }
+
+        .suggestion-item {
+            padding: 0.875rem 1rem;
+            cursor: pointer;
+            border-bottom: 1px solid var(--border);
+            transition: background 0.2s;
+        }
+
+        .suggestion-item:last-child {
+            border-bottom: none;
+        }
+
+        .suggestion-item:hover {
+            background: var(--bg-input);
+        }
+
+        .suggestion-main {
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .suggestion-secondary {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 0.25rem;
+        }
+
+        .location-details {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.75rem;
+            margin-top: 0.75rem;
+            padding: 0.75rem;
+            background: var(--bg-input);
+            border-radius: 0.5rem;
+            font-size: 0.75rem;
+        }
+
+        .location-detail {
+            text-align: center;
+        }
+
+        .location-detail-label {
+            color: var(--text-muted);
+            text-transform: uppercase;
+            font-size: 0.625rem;
+            letter-spacing: 0.05em;
+        }
+
+        .location-detail-value {
+            color: var(--text-primary);
+            font-weight: 600;
+            margin-top: 0.25rem;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 0.75rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.4);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .loading-spinner {
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Results Section */
+        .results-card {
+            display: none;
+        }
+
+        .results-card.visible {
+            display: block;
+            animation: slideIn 0.4s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .price-hero {
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(245, 158, 11, 0.1) 100%);
+            border-radius: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .price-label {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.5rem;
+        }
+
+        .price-value {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--success) 0%, #34d399 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .price-per-sqft {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-top: 0.5rem;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .metric-card {
+            background: var(--bg-input);
+            padding: 1rem;
+            border-radius: 0.75rem;
+            text-align: center;
+        }
+
+        .metric-icon {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-value {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .metric-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .confidence-bar {
+            background: var(--bg-input);
+            border-radius: 1rem;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .confidence-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.75rem;
+        }
+
+        .confidence-title {
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .confidence-score {
+            font-weight: 700;
+        }
+
+        .confidence-track {
+            background: var(--bg-dark);
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .confidence-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.5s ease;
+        }
+
+        .confidence-fill.high {
+            background: linear-gradient(90deg, var(--success), #34d399);
+        }
+
+        .confidence-fill.medium {
+            background: linear-gradient(90deg, var(--warning), #fbbf24);
+        }
+
+        .confidence-fill.low {
+            background: linear-gradient(90deg, var(--danger), #f87171);
+        }
+
+        .price-band {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            background: var(--bg-input);
+            border-radius: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .band-label {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        .band-value {
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .flag-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .flag-badge.market {
+            background: rgba(16, 185, 129, 0.2);
+            color: var(--success);
+        }
+
+        .flag-badge.circle {
+            background: rgba(245, 158, 11, 0.2);
+            color: var(--warning);
+        }
+
+        .breakdown-section {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .breakdown-title {
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+        }
+
+        .breakdown-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            font-size: 0.875rem;
+        }
+
+        .breakdown-item span:first-child {
+            color: var(--text-muted);
+        }
+
+        .error-message {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid var(--danger);
+            color: var(--danger);
+            padding: 1rem;
+            border-radius: 0.75rem;
+            text-align: center;
+        }
+
+        .api-key-notice {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 0.5rem;
+            text-align: center;
+        }
+
+        .api-key-notice a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-muted);
+            font-size: 0.875rem;
+        }
+
+        footer a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        /* Hidden inputs for form submission */
+        .hidden-inputs {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bg-animation"></div>
+
+    <div class="container">
+        <header>
+            <div class="logo">
+                <span class="logo-icon">🏠</span>
+                <span>Prop-O-Lex</span>
+            </div>
+            <p class="tagline">AI-Powered Property Valuation for India</p>
+        </header>
+
+        <div class="main-grid">
+            <!-- Input Form -->
+            <div class="card">
+                <h2 class="card-title">📝 Property Details</h2>
+                <form id="valuationForm">
+                    <div class="form-grid">
+                        <!-- Location Search -->
+                        <div class="form-group full-width">
+                            <label for="locationSearch">📍 Property Location</label>
+                            <div class="location-search-container">
+                                <span class="location-icon">🔍</span>
+                                <input type="text" id="locationSearch" class="location-input"
+                                    placeholder="Search for address, locality, or landmark..." autocomplete="off"
+                                    required>
+                                <div class="location-suggestions" id="suggestions"></div>
+                            </div>
+                            <div class="location-details" id="locationDetails" style="display: none;">
+                                <div class="location-detail">
+                                    <div class="location-detail-label">Latitude</div>
+                                    <div class="location-detail-value" id="displayLat">-</div>
+                                </div>
+                                <div class="location-detail">
+                                    <div class="location-detail-label">Longitude</div>
+                                    <div class="location-detail-value" id="displayLon">-</div>
+                                </div>
+                                <div class="location-detail">
+                                    <div class="location-detail-label">City</div>
+                                    <div class="location-detail-value" id="displayCity">-</div>
+                                </div>
+                                <div class="location-detail">
+                                    <div class="location-detail-label">State</div>
+                                    <div class="location-detail-value" id="displayState">-</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Hidden inputs for actual form values -->
+                        <div class="hidden-inputs">
+                            <input type="hidden" id="latitude" name="latitude">
+                            <input type="hidden" id="longitude" name="longitude">
+                            <input type="hidden" id="city" name="city">
+                            <input type="hidden" id="state" name="state">
+                            <input type="hidden" id="pincode" name="pincode">
+                        </div>
+
+                        <!-- Property Type -->
+                        <div class="form-group">
+                            <label for="property_type">Property Type <span class="required">*</span></label>
+                            <select id="property_type" required>
+                                <option value="">Select Type</option>
+                                <option value="residential_apartment">Apartment</option>
+                                <option value="independent_house">Independent House</option>
+                                <option value="villa">Villa</option>
+                                <option value="row_house">Row House</option>
+                                <option value="penthouse">Penthouse</option>
+                                <option value="residential_plot">Plot</option>
+                                <option value="commercial_property">Commercial</option>
+                            </select>
+                        </div>
+
+                        <!-- Property Features -->
+                        <div class="form-group">
+                            <label for="area_sqft">Area (sq ft) <span class="required">*</span></label>
+                            <input type="number" id="area_sqft" placeholder="e.g., 1200" min="101" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="age">Age (years)</label>
+                            <input type="number" id="age" placeholder="e.g., 5" min="0" max="100" value="0">
+                        </div>
+                        <div class="form-group" id="bedroomsGroup">
+                            <label for="bedrooms">Bedrooms <span class="required bedrooms-required">*</span></label>
+                            <select id="bedrooms">
+                                <option value="0">Studio</option>
+                                <option value="1">1 BHK</option>
+                                <option value="2" selected>2 BHK</option>
+                                <option value="3">3 BHK</option>
+                                <option value="4">4 BHK</option>
+                                <option value="5">5+ BHK</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="bathrooms">Bathrooms</label>
+                            <select id="bathrooms">
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2" selected>2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5+</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <button type="submit" class="btn btn-primary" id="submitBtn">
+                                <span id="btnText">🔮 Get Valuation</span>
+                                <div class="loading-spinner" id="spinner" style="display: none;"></div>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Results Card -->
+            <div class="card results-card" id="resultsCard">
+                <h2 class="card-title">💰 Valuation Results</h2>
+
+                <div class="price-hero">
+                    <div class="price-label">Estimated Property Value</div>
+                    <div class="price-value" id="finalPrice">₹0</div>
+                    <div class="price-per-sqft" id="pricePerSqft">₹0 per sq ft</div>
+                </div>
+
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-icon">📊</div>
+                        <div class="metric-value" id="confidenceLevel">-</div>
+                        <div class="metric-label">Confidence</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-icon">📏</div>
+                        <div class="metric-value" id="priceBand">-</div>
+                        <div class="metric-label">Price Band</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-icon">✨</div>
+                        <div class="metric-value" id="subtypeMultiplier">-</div>
+                        <div class="metric-label">Type Multiplier</div>
+                    </div>
+                </div>
+
+                <div class="confidence-bar">
+                    <div class="confidence-header">
+                        <span class="confidence-title">Confidence Score</span>
+                        <span class="confidence-score" id="confidenceScore">0%</span>
+                    </div>
+                    <div class="confidence-track">
+                        <div class="confidence-fill" id="confidenceFill" style="width: 0%"></div>
+                    </div>
+                </div>
+
+                <div class="price-band">
+                    <div>
+                        <div class="band-label">Low Estimate</div>
+                        <div class="band-value" id="lowEstimate">₹0</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <div class="flag-badge market">
+                            <span>💹</span>
+                            <span>Market Price</span>
+                        </div>
+                    </div>
+                    <div style="text-align: right;">
+                        <div class="band-label">High Estimate</div>
+                        <div class="band-value" id="highEstimate">₹0</div>
+                    </div>
+                </div>
+
+                <div class="breakdown-section">
+                    <div class="breakdown-title">Price Breakdown</div>
+                    <div class="breakdown-item">
+                        <span>Linear Model Estimate</span>
+                        <span id="linearPrice">₹0</span>
+                    </div>
+                    <div class="breakdown-item">
+                        <span>XGBoost Model Estimate</span>
+                        <span id="xgbPrice">₹0</span>
+                    </div>
+                    <div class="breakdown-item">
+                        <span>Final Hybrid Estimate</span>
+                        <span id="hybridPrice">₹0</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Error Card -->
+            <div class="card" id="errorCard" style="display: none;">
+                <div class="error-message" id="errorMessage">
+                    An error occurred. Please try again.
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>Built with ❤️ using FastAPI, XGBoost, and Linear Regression | <a href="http://localhost:8000/docs"
+                    target="_blank">API Docs</a></p>
+        </footer>
+    </div>
+
+    <script>
+        // =====================================================
+        // ⚙️ CONFIGURATION (UPDATE THIS FOR DEPLOYMENT)
+        // =====================================================
+        // 1. Deploy backend to Railway.
+        // 2. Copy the "Public Domain" from Railway Settings.
+        // 3. Paste it below (e.g., "https://prop-o-lex.up.railway.app")
+        // 4. Then deploy this file to Vercel.
+        const BACKEND_URL = "https://web-production-665c.up.railway.app";
+
+        // =====================================================
+        // State mapping for API
+        // =====================================================
+        const stateNormalization = {
+            'karnataka': 'karnataka',
+            'maharashtra': 'maharashtra',
+            'delhi': 'delhi',
+            'national capital territory of delhi': 'delhi',
+            'tamil nadu': 'tamil_nadu',
+            'telangana': 'telangana',
+            'andhra pradesh': 'andhra pradesh',
+            'west bengal': 'west_bengal',
+            'rajasthan': 'rajasthan',
+            'gujarat': 'gujarat',
+            'haryana': 'haryana',
+            'uttar pradesh': 'uttar pradesh',
+            'kerala': 'kerala',
+            'madhya pradesh': 'madhya pradesh',
+            'punjab': 'punjab'
+        };
+
+        // Subtype options by property type
+        const subtypeOptions = {
+            'residential_apartment': [
+                { value: 'studio_apt', label: 'Studio Apartment' },
+                { value: '1bhk_apt', label: '1 BHK Apartment' },
+                { value: '2bhk_apt', label: '2 BHK Apartment' },
+                { value: '3bhk_apt', label: '3 BHK Apartment' },
+                { value: '4bhk_apt', label: '4 BHK Apartment' },
+                { value: 'duplex_apt', label: 'Duplex Apartment' },
+                { value: 'highrise_apt', label: 'Highrise Apartment' },
+                { value: 'service_apt', label: 'Service Apartment' },
+                { value: 'affordable_apt', label: 'Affordable Housing' }
+            ],
+            'independent_house': [
+                { value: 'independent_floor', label: 'Independent Floor' },
+                { value: 'bungalow', label: 'Bungalow' },
+                { value: 'single_storey_house', label: 'Single Storey' },
+                { value: 'multistorey_house', label: 'Multi Storey' }
+            ],
+            'villa': [
+                { value: 'luxury_villa', label: 'Luxury Villa' },
+                { value: 'duplex_villa', label: 'Duplex Villa' },
+                { value: 'triplex_villa', label: 'Triplex Villa' },
+                { value: 'gated_villa', label: 'Gated Community Villa' },
+                { value: 'farm_villa', label: 'Farmhouse Villa' }
+            ],
+            'row_house': [
+                { value: 'townhouse', label: 'Townhouse' },
+                { value: 'cluster_housing', label: 'Cluster Housing' },
+                { value: 'row_villa', label: 'Row Villa' },
+                { value: 'gated_rowhouse', label: 'Gated Row House' }
+            ],
+            'penthouse': [
+                { value: 'penthouse_single', label: 'Single Level Penthouse' },
+                { value: 'penthouse_duplex', label: 'Duplex Penthouse' },
+                { value: 'penthouse_terrace', label: 'Terrace Penthouse' }
+            ],
+            'residential_plot': [
+                { value: 'residential_plot', label: 'Residential Plot' },
+                { value: 'commercial_plot', label: 'Commercial Plot' },
+                { value: 'industrial_plot', label: 'Industrial Plot' },
+                { value: 'agricultural_plot', label: 'Agricultural Land' },
+                { value: 'institutional_plot', label: 'Institutional Land' },
+                { value: 'mixed_use_plot', label: 'Mixed Use Plot' }
+            ],
+            'commercial_property': [
+                { value: 'office_space', label: 'Office Space' },
+                { value: 'it_techpark', label: 'IT/Tech Park' },
+                { value: 'shop_showroom', label: 'Shop/Showroom' },
+                { value: 'warehouse_godown', label: 'Warehouse/Godown' },
+                { value: 'industrial_shed', label: 'Industrial Shed' },
+                { value: 'hotel_resort', label: 'Hotel/Resort' },
+                { value: 'coworking_space', label: 'Coworking Space' },
+                { value: 'medical_clinic', label: 'Medical/Clinic' },
+                { value: 'educational_institution', label: 'Educational Institution' }
+            ]
+        };
+
+        // =====================================================
+        // Infer Subtype from Property Type and Bedrooms
+        // =====================================================
+        function inferSubtype(propertyType, bedrooms) {
+            const subtypeMap = {
+                'residential_apartment': {
+                    0: 'studio_apt', 1: '1bhk_apt', 2: '2bhk_apt',
+                    3: '3bhk_apt', 4: '4bhk_apt', 5: '4bhk_apt'
+                },
+                'independent_house': 'independent_floor',
+                'villa': 'luxury_villa',
+                'row_house': 'townhouse',
+                'penthouse': 'penthouse_duplex',
+                'residential_plot': 'residential_plot',
+                'commercial_property': 'office_space'
+            };
+
+            const mapping = subtypeMap[propertyType];
+            if (typeof mapping === 'object') {
+                return mapping[bedrooms] || mapping[2];
+            }
+            return mapping || 'standard';
+        }
+
+        // =====================================================
+        // Property Type Change Handler - Hide bedrooms for plots
+        // =====================================================
+        document.getElementById('property_type').addEventListener('change', function () {
+            const bedroomsGroup = document.getElementById('bedroomsGroup');
+            const bedroomsRequired = document.querySelector('.bedrooms-required');
+
+            if (this.value === 'residential_plot') {
+                bedroomsGroup.style.display = 'none';
+                if (bedroomsRequired) bedroomsRequired.style.display = 'none';
+                const bathroomsSelect = document.getElementById('bathrooms');
+                if (bathroomsSelect) bathroomsSelect.value = '0';
+            } else {
+                bedroomsGroup.style.display = 'flex';
+                if (bedroomsRequired) bedroomsRequired.style.display = 'inline';
+            }
+        });
+
+        // =====================================================
+        // Location Search with LocationIQ
+        // =====================================================
+        const locationSearch = document.getElementById('locationSearch');
+        const suggestions = document.getElementById('suggestions');
+        const locationDetails = document.getElementById('locationDetails');
+        let searchTimeout;
+
+        locationSearch.addEventListener('input', function () {
+            clearTimeout(searchTimeout);
+            const query = this.value.trim();
+
+            if (query.length < 3) {
+                suggestions.classList.remove('active');
+                return;
+            }
+
+            // Debounce search
+            searchTimeout = setTimeout(() => {
+                searchLocation(query);
+            }, 300);
+        });
+
+        async function searchLocation(query) {
+            try {
+                // Call backend proxy endpoint
+                const url = `${BACKEND_URL}/geocode?q=${encodeURIComponent(query)}`;
+                const response = await fetch(url);
+                const data = await response.json();
+
+                if (data.success && data.suggestions && data.suggestions.length > 0) {
+                    showSuggestions(data.suggestions);
+                } else {
+                    suggestions.classList.remove('active');
+                }
+            } catch (error) {
+                console.error('Location search error:', error);
+                suggestions.classList.remove('active');
+            }
+        }
+
+        function showSuggestions(data) {
+            suggestions.innerHTML = '';
+
+            data.forEach(item => {
+                const div = document.createElement('div');
+                div.className = 'suggestion-item';
+
+                const parts = item.display_name.split(',');
+                const main = parts[0];
+                const secondary = parts.slice(1, 3).join(',');
+
+                div.innerHTML = `
+                    <div class="suggestion-main">${main}</div>
+                    <div class="suggestion-secondary">${secondary}</div>
+                `;
+
+                div.addEventListener('click', () => selectLocation(item));
+                suggestions.appendChild(div);
+            });
+
+            suggestions.classList.add('active');
+        }
+
+        function selectLocation(item) {
+            // Set display value
+            locationSearch.value = item.display_name;
+            suggestions.classList.remove('active');
+
+            // Extract data from backend response format
+            const lat = parseFloat(item.lat);
+            const lon = parseFloat(item.lon);
+            const city = item.city || 'Bangalore';
+            const state = item.state || 'Karnataka';
+            const pincode = item.pincode || '560001';
+
+            // Set hidden form values
+            document.getElementById('latitude').value = lat;
+            document.getElementById('longitude').value = lon;
+            document.getElementById('city').value = city.toLowerCase();
+            document.getElementById('state').value = (stateNormalization[state.toLowerCase()] || state).toLowerCase();
+            document.getElementById('pincode').value = pincode;
+
+            // Update display
+            document.getElementById('displayLat').textContent = lat.toFixed(4);
+            document.getElementById('displayLon').textContent = lon.toFixed(4);
+            document.getElementById('displayCity').textContent = city;
+            document.getElementById('displayState').textContent = state;
+
+            locationDetails.style.display = 'grid';
+        }
+
+        // Close suggestions when clicking outside
+        document.addEventListener('click', function (e) {
+            if (!locationSearch.contains(e.target) && !suggestions.contains(e.target)) {
+                suggestions.classList.remove('active');
+            }
+        });
+
+        // =====================================================
+        // Property Type → Subtype Mapping
+        // =====================================================
+        document.getElementById('property_type').addEventListener('change', function () {
+            const subtypeSelect = document.getElementById('property_subtype');
+            subtypeSelect.innerHTML = '<option value="">Select Subtype</option>';
+
+            const options = subtypeOptions[this.value] || [];
+            options.forEach(opt => {
+                const option = document.createElement('option');
+                option.value = opt.value;
+                option.textContent = opt.label;
+                subtypeSelect.appendChild(option);
+            });
+        });
+
+        // =====================================================
+        // Currency Formatting
+        // =====================================================
+        function formatCurrency(amount) {
+            if (amount >= 10000000) {
+                return '₹' + (amount / 10000000).toFixed(2) + ' Cr';
+            } else if (amount >= 100000) {
+                return '₹' + (amount / 100000).toFixed(2) + ' L';
+            } else {
+                return '₹' + amount.toLocaleString('en-IN');
+            }
+        }
+
+        // =====================================================
+        // Form Submission
+        // =====================================================
+        document.getElementById('valuationForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            // Validate location is selected
+            const lat = document.getElementById('latitude').value;
+            const lon = document.getElementById('longitude').value;
+
+            if (!lat || !lon) {
+                alert('Please select a location from the suggestions');
+                return;
+            }
+
+            const submitBtn = document.getElementById('submitBtn');
+            const btnText = document.getElementById('btnText');
+            const spinner = document.getElementById('spinner');
+            const resultsCard = document.getElementById('resultsCard');
+            const errorCard = document.getElementById('errorCard');
+
+            // Show loading
+            submitBtn.disabled = true;
+            btnText.style.display = 'none';
+            spinner.style.display = 'block';
+            errorCard.style.display = 'none';
+
+            // Auto-infer subtype based on property type and bedrooms
+            const propertyType = document.getElementById('property_type').value;
+            const bedrooms = parseInt(document.getElementById('bedrooms').value);
+            const propertySubtype = inferSubtype(propertyType, bedrooms);
+
+            const payload = {
+                latitude: parseFloat(lat),
+                longitude: parseFloat(lon),
+                city: document.getElementById('city').value,
+                state: document.getElementById('state').value,
+                pincode: document.getElementById('pincode').value,
+                area_sqft: parseFloat(document.getElementById('area_sqft').value),
+                bedrooms: propertyType === 'residential_plot' ? 0 : bedrooms,
+                bathrooms: parseInt(document.getElementById('bathrooms').value) || 1,
+                property_type: propertyType,
+                property_subtype: propertySubtype,
+                age: parseFloat(document.getElementById('age').value) || 0
+            };
+
+            try {
+                const response = await fetch(`${BACKEND_URL}/predict`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                if (!response.ok) {
+                    throw new Error(`API Error: ${response.status}`);
+                }
+
+                const result = await response.json();
+
+                // Update results
+                document.getElementById('finalPrice').textContent = formatCurrency(result.final_price);
+                document.getElementById('pricePerSqft').textContent = '₹' + Math.round(result.final_price_per_sqft).toLocaleString('en-IN') + ' per sq ft';
+                document.getElementById('confidenceLevel').textContent = result.confidence_level;
+                document.getElementById('priceBand').textContent = result.price_band;
+                document.getElementById('subtypeMultiplier').textContent = result.subtype_multiplier.toFixed(2) + 'x';
+
+                // Confidence bar
+                const confScore = result.confidence_score;
+                document.getElementById('confidenceScore').textContent = confScore.toFixed(0) + '%';
+                const confFill = document.getElementById('confidenceFill');
+                confFill.style.width = confScore + '%';
+                confFill.className = 'confidence-fill ' + result.confidence_level.toLowerCase();
+
+                // Price band estimates
+                const bandPct = result.price_band === '±5%' ? 0.05 : (result.price_band === '±10%' ? 0.10 : 0.20);
+                document.getElementById('lowEstimate').textContent = formatCurrency(result.final_price * (1 - bandPct));
+                document.getElementById('highEstimate').textContent = formatCurrency(result.final_price * (1 + bandPct));
+
+                // Breakdown
+                document.getElementById('linearPrice').textContent = formatCurrency(result.linear_price);
+                document.getElementById('xgbPrice').textContent = formatCurrency(result.xgb_price);
+                document.getElementById('hybridPrice').textContent = formatCurrency(result.hybrid_price);
+
+                resultsCard.classList.add('visible');
+
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('errorMessage').textContent = 'Error: ' + error.message + '. Make sure the API is running on localhost:8000';
+                errorCard.style.display = 'block';
+                resultsCard.classList.remove('visible');
+            } finally {
+                submitBtn.disabled = false;
+                btnText.style.display = 'inline';
+                spinner.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+
+</html>
