@@ -111,9 +111,79 @@
             gap: 2rem;
         }
 
+        /* Responsive adjustments */
         @media (max-width: 1024px) {
             .main-grid {
                 grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            .card {
+                padding: 1.5rem;
+            }
+
+            .price-hero {
+                padding: 1.5rem;
+            }
+
+            .price-value {
+                font-size: 2.25rem;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-group.full-width {
+                grid-column: span 1;
+            }
+
+            .location-details {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 1.75rem;
+            }
+
+            .logo-icon {
+                font-size: 2rem;
+            }
+
+            .tagline {
+                font-size: 0.95rem;
+            }
+
+            .price-value {
+                font-size: 1.75rem;
+            }
+
+            .metrics-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .location-details {
+                grid-template-columns: 1fr;
+                text-align: left;
+            }
+
+            .location-detail {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 0.25rem 0;
+            }
+
+            .location-detail-value {
+                margin-top: 0;
             }
         }
 
